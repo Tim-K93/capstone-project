@@ -1,6 +1,6 @@
-import Form from "@/components/Form"
+import Form from "@components/Form"
 import Link from "next/link"
-import Navigation from "@/components/Navigation"
+import Navigation from "@components/Navigation"
 import { useState } from "react"
 
 
