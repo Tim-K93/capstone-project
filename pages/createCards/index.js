@@ -1,4 +1,4 @@
-import Form from "@/components/form"
+import Form from "@/components/Form"
 import Link from "next/link"
 import Navigation from "@/components/Navigation"
 import { useState } from "react"
