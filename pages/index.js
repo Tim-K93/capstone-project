@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import Navigation from "@components/Navigation";
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
   return (
