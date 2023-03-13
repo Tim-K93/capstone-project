@@ -4,7 +4,7 @@ export default function Navigation() {
     return(
        <footer>
         <button>
-            <Link href="./index">Home</Link>
+            <Link href="/">Home</Link>
         </button>
         <button>
             <Link href="/createCards/index">Create Cards</Link>
