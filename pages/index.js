@@ -1,10 +1,18 @@
 import styled from "styled-components";
+import Link from "next/link";
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
   return (
-    <main>
-      <Heading>🐋Capstone Whales Template🐋</Heading>
-    </main>
+    <div>
+      <Heading>Shelter Manager</Heading>
+      <ul>
+      <Link href="/"><button>Home</button></Link>
+        <Link href="./createCards"><button>Create Cards</button></Link>
+        <Link href="/allCards"><button>All Cards</button></Link>
+      </ul>
+    </div>
+  
   );
 }
 
