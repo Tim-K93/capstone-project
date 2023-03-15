@@ -1,10 +1,10 @@
-import Link from "next/link"
+import Link from "next/link";
+import AnimalDetails from "@/components/AnimalDetails";
 
-export default function allCards() {
-    return(
-        <>
-        <Link href="/"><button>Home</button></Link>
-        <Link href="./createCards"><button>Create Cards</button></Link>
-        </>
-    )
+export default function allCards({ animals }) {
+  return (
+    <>
+      <AnimalDetails animals={animals} />
+    </>
+  );
 }

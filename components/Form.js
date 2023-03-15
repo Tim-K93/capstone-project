@@ -1,53 +1,51 @@
-import { useForm } from "react-hook-form";
-import {useLocalStorage} from "react-use"; 
-import useLocalStorageState from "use-local-storage-state"; 
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useForm } from "react-hook-form";
+import { uid } from "uid";
 
-export default function AddAnimalForm() {
-  const [animalData, setAnimalData] = useLocalStorage("Animal Data", []);
-  const [animals, setAnimals] = useLocalStorageState("animals", [] );
+
+export default function AddAnimalForm({setAnimals, animals}) {
   const [submitMessage, setSubmitMessage] = useState(false);
-
+  const [showDetails, setShowDetails] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data, event) => {
     event.target.reset();
-    const id = uuidv4(); 
-    const newAnimalData = { ...data, id: id };
-    setAnimalData([...animalData, newAnimalData]);
-    setAnimals([animals, {...data, id}]);
+    const newAnimal = { ...data, id: uid() };
+    setAnimals([...(animals || []), newAnimal]); 
     setSubmitMessage(true);
-    setTimeout(() => setSubmitMessage(false), 3000);
+    setShowDetails(true);
+    setTimeout(() => {
+      setSubmitMessage(false);
+      setShowDetails(false);
+    }, 3000);
   };
 
   return (
     <div>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <select {...register("species", {required: true})} >
-        <option value="">--Choose Animal--</option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
-        <option value="rabbit">Rabbit</option>
-        <option value="tortoise">Tortoise</option>
-        <option value="guinea pig">Guinea pig</option>
-      </select>
-      {errors.species && <span>Species is required</span>}
-      <ul>
-      <input {...register ("name", {required: true})} placeholder="Name" />
-      {errors.name && <span>Name is required</span>}
-      <input {...register("age", {required: true})} placeholder="Alter"/>
-      {errors.age && <span>Age is required</span>}
-      <input {...register("character", {required: true})} placeholder="Gemüt"/>
-      {errors.character && <span>Character is required</span>}
-      <input {...register("owner", {required: true})} placeholder="Vorbesitzer"/>
-      {errors.owner && <span>Owners is required</span>}
-      <input {...register("miscellaneous")} placeholder="sonstiges"/>
-      </ul>
-      <input type="submit" />
-    </form>
-    {submitMessage && <p>Form submitted successfully</p>}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <select {...register("species", { required: true })}>
+          <option value="">--Choose Animal--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="rabbit">Rabbit</option>
+          <option value="tortoise">Tortoise</option>
+          <option value="guinea pig">Guinea pig</option>
+        </select>
+        {errors.species && <span>Species is required</span>}
+        <ul>
+          <input {...register("name", { required: true })} key="name" placeholder="Name" />
+          {errors.name && <span>Name is required</span>}
+          <input {...register("age", { required: true })} key="age" placeholder="Age" />
+          {errors.age && <span>Age is required</span>}
+          <input {...register("character", { required: true })} key="character" placeholder="Character" />
+          {errors.character && <span>Character is required</span>}
+          <input {...register("owner", { required: true })} key="owner" placeholder="Owners" />
+          {errors.owner && <span>Owners is required</span>}
+          <input {...register("miscellaneous")} key="miscellaneous" placeholder="miscelleaneous" />
+        </ul>
+        <input type="submit" />
+      </form>
+      {submitMessage && <p>Form submitted successfully</p>}
     </div>
   );
-}
-
+  }
