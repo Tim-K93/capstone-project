@@ -33,13 +33,13 @@ export default function AddAnimalForm({setAnimals, animals}) {
         </select>
         {errors.species && <span>Species is required</span>}
         <ul>
-          <input {...register("name", { required: true })} key="name" placeholder="Name" />
+          <input {...register("name", { required: true })} minLength="2" maxlength="15" type="text" key="name" placeholder="Name" />
           {errors.name && <span>Name is required</span>}
-          <input {...register("age", { required: true })} key="age" placeholder="Age" />
+          <input {...register("age", { required: true })} minLength="0" maxlength="1" name="quantity" min="0" type="number" key="age" placeholder="Age" />
           {errors.age && <span>Age is required</span>}
-          <input {...register("character", { required: true })} key="character" placeholder="Character" />
+          <input {...register("character", { required: true })} minLength="2" maxlength="20" type="text" key="character" placeholder="Character" />
           {errors.character && <span>Character is required</span>}
-          <input {...register("owner", { required: true })} key="owner" placeholder="Owners" />
+          <input {...register("owner", { required: true })} minLength="1" maxlength="2" name="quantity" min="0" type="number" key="owner" placeholder="Owners" />
           {errors.owner && <span>Owners is required</span>}
           <input {...register("miscellaneous")} key="miscellaneous" placeholder="miscelleaneous" />
         </ul>
