@@ -7,13 +7,18 @@ import Link from "next/link";
 export default function App({ Component, pageProps }) {
   const [animals, setAnimals] = useLocalStorageState("animals", []);
 
+  const handleDeleteAnimalClick = (id) => {
+    const newAnimals = animals.filter((animal) => animal.id !== id);
+    setAnimals(newAnimals)
+  };
+
   return (
     <>
       <GlobalStyle />
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <Component {...pageProps} animals={animals} setAnimals={setAnimals} />
+      <Component {...pageProps} animals={animals} setAnimals={setAnimals} handleDeleteAnimalClick={handleDeleteAnimalClick}/>
       <ul>
         <li>
           <Link href="/">
