@@ -1,11 +1,9 @@
-import Form from "@/components/Form"
-import { useState } from "react"
+import Form from "@/components/Form";
 
-export default function createCards({animals, setAnimals}){
-    
-    return(
-        <>
-        <Form animals={animals} setAnimals={setAnimals}/>
-        </>
-    )
+export default function createCards({ animals, setAnimals }) {
+  return (
+    <>
+      <Form animals={animals} setAnimals={setAnimals} />
+    </>
+  );
 }

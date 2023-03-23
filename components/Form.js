@@ -55,14 +55,14 @@ export default function AddAnimalForm({ setAnimals, animals }) {
           />
           {errors.age && <span>Age is required</span>}
           <input
-            {...register("character", { required: true })}
+            {...register("color", { required: true })}
             minLength="2"
             maxLength="20"
             type="text"
             key="character"
-            placeholder="Character"
+            placeholder="color"
           />
-          {errors.character && <span>Character is required</span>}
+          {errors.color && <span>Color is required</span>}
           <input
             {...register("owner", { required: true })}
             name="owner"
