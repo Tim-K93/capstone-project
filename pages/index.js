@@ -10,11 +10,11 @@ export default function Home() {
 
 const Heading = styled.h1`
   display: flex;
-  text-justify: center;
-  width: 270px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100px;
   background-color: blue;
   color: white;
-  border: 2px solid;
-  border-radius: 15px;
-  border-color: black;
 `;
