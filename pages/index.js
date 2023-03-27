@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Navigation from "@/components/Navigation";
 
 export default function Home() {
   return (
@@ -11,7 +10,7 @@ export default function Home() {
 
 const Heading = styled.h1`
   display: flex;
-  justify-content: center;
+  text-justify: center;
   width: 270px;
   background-color: blue;
   color: white;
