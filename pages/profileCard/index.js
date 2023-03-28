@@ -1,4 +1,4 @@
-import AnimalProfile from "@/components/AnimalProfile";
+import AnimalProfile from "@components/AnimalProfile";
 
 export default function profileCard() {
   return (
