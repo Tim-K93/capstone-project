@@ -7,13 +7,19 @@ export default function AnimalProfile({ animals }) {
 
   return (
     <>
-      <h2>{animal.name}´s Profile</h2>
-      <p>Species: {animal.species}</p>
-      <p>Name: {animal.name}</p>
-      <p>Age: {animal.age}</p>
-      <p>Character: {animal.color}</p>
-      <p>Owner: {animal.owner}</p>
-      <p>Miscellaneous: {animal.miscellaneous}</p>
+      {animal ? (
+        <>
+          <h2>{animal.name}´s Profile</h2>
+          <p>Species: {animal.species}</p>
+          <p>Name: {animal.name}</p>
+          <p>Age: {animal.age}</p>
+          <p>Character: {animal.color}</p>
+          <p>Owner: {animal.owner}</p>
+          <p>Miscellaneous: {animal.miscellaneous}</p>
+        </>
+      ) : (
+        <p>No animal found with ID {id}</p>
+      )}
     </>
   );
 }

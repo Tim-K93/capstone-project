@@ -2,8 +2,6 @@ import GlobalStyle from "@/styles";
 import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 import Link from "next/link";
-import CreateCards from "./createCards/index";
-import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
   const [animals, setAnimals] = useLocalStorageState("animals", []);
