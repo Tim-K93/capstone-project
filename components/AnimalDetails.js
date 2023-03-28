@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 function EditableField({ name, value, onChange }) {
   const isNumeric = name === "age" || name === "owner";
@@ -76,6 +77,10 @@ export default function AnimalDetails({
           <button onClick={() => handleDeleteAnimalClick(animal.id)}>
             Delete
           </button>
+          <Link href={`/animalProfile/${animal.id}`}>
+            <p>{animal.name}`s Profile</p>
+          </Link>
+
           <button onClick={() => handleEditClick(animal.id)}>Edit</button>
           {editingId === animal.id ? (
             <ul>

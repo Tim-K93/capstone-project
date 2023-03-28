@@ -2,11 +2,11 @@ import GlobalStyle from "@/styles";
 import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 import Link from "next/link";
-import { Fragment } from "react";
-import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
-  const [animals, setAnimals] = useLocalStorageState("animals", []);
+  const [animals, setAnimals] = useLocalStorageState("animals", {
+    defaultValue: [],
+  });
 
   const handleDeleteAnimalClick = (id) => {
     const newAnimals = animals.filter((animal) => animal.id !== id);
@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <Fragment>
+    <>
       <GlobalStyle />
       <Head>
         <title>Capstone Project</title>
@@ -42,6 +42,6 @@ export default function App({ Component, pageProps }) {
           </Link>
         </li>
       </ul>
-    </Fragment>
+    </>
   );
 }
