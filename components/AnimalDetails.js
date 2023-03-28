@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import AnimalSearch from "./AnimalSearch";
 
 function EditableField({ name, value, onChange }) {
   const isNumeric = name === "age" || name === "owner";
@@ -28,6 +29,7 @@ export default function AnimalDetails({
   const [fields, setFields] = useState({});
   const [originalFields, setOriginalFields] = useState({});
   const [editingId, setEditingId] = useState(null);
+  const [searchSpecies, setSearchSpecies] = useState("");
 
   if (!animals || animals.length === 0) {
     return <div>No animals to display</div>;
@@ -62,9 +64,18 @@ export default function AnimalDetails({
     setFields(originalFields);
   };
 
+  const filteredAnimals = animals.filter((animal) =>
+    animal.species.toLowerCase().includes(searchSpecies.toLowerCase())
+  );
+
+  const handleSearch = (searchTerm) => {
+    setSearchSpecies(searchTerm);
+  };
+
   return (
     <>
       <h2>Animal Details</h2>
+      <AnimalSearch onSearch={handleSearch} />
       {isEditing ? (
         <>
           <button onClick={handleSaveClick}>Save</button>
@@ -72,7 +83,7 @@ export default function AnimalDetails({
         </>
       ) : null}
 
-      {animals.map((animal) => (
+      {filteredAnimals.map((animal) => (
         <div key={animal.id}>
           <button onClick={() => handleDeleteAnimalClick(animal.id)}>
             Delete
