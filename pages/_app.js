@@ -4,7 +4,9 @@ import useLocalStorageState from "use-local-storage-state";
 import Link from "next/link";
 
 export default function App({ Component, pageProps }) {
-  const [animals, setAnimals] = useLocalStorageState("animals", []);
+  const [animals, setAnimals] = useLocalStorageState("animals", {
+    defaultValue: [],
+  });
 
   const handleDeleteAnimalClick = (id) => {
     const newAnimals = animals.filter((animal) => animal.id !== id);

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 export default function AnimalProfile({ animals }) {
   const router = useRouter();
   const { id } = router.query;
+  console.log(animals);
   const animal = animals.find((animal) => animal.id === id);
 
   return (
