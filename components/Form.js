@@ -10,6 +10,8 @@ const FormContainer = styled.div`
   background-color: #7cbcde;
   height: 80px;
   padding: 10px;
+  max-width: 340;
+  word-wrap: break-word;
 `;
 
 const Headline = styled.h1`
@@ -117,8 +119,9 @@ export default function AddAnimalForm({ setAnimals, animals }) {
         <Input
           {...register("age", { required: true })}
           name="age"
-          min="0"
-          type="number"
+          minLength={0}
+          maxLength={3}
+          type="text"
           key="age"
           placeholder="Age"
         />
@@ -126,7 +129,7 @@ export default function AddAnimalForm({ setAnimals, animals }) {
         <Input
           {...register("color", { required: true })}
           minLength="2"
-          maxLength="20"
+          maxLength="15"
           type="text"
           key="character"
           placeholder="color"
@@ -135,8 +138,9 @@ export default function AddAnimalForm({ setAnimals, animals }) {
         <Input
           {...register("owner", { required: true })}
           name="owner"
-          min="0"
-          type="number"
+          minLength={0}
+          maxLength={3}
+          type="text  "
           key="owner"
           placeholder="Owners"
         />
@@ -144,7 +148,8 @@ export default function AddAnimalForm({ setAnimals, animals }) {
         <Input
           {...register("miscellaneous")}
           key="miscellaneous"
-          placeholder="miscelleaneous"
+          placeholder="miscellaneous"
+          maxLength="60"
         />
 
         <Button type="submit" />

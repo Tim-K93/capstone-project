@@ -208,7 +208,7 @@ const AnimalUl = styled.ul`
 
 const AnimalLi = styled.li`
   padding: 10px;
-  text-align: left;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.button`
@@ -273,23 +273,28 @@ const AnimalDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 250px;
+  width: auto;
+  word-wrap: break-word;
   height: 380px;
   padding: 10px;
   border: 3px solid #ccc;
   background-color: white;
   border-radius: 10px;
   margin-top: 10px;
-  margin-left: 58px;
+  margin-left: 40px;
+  margin-right: 40px;
 `;
 
 const AnimalProfileLink = styled(Link)`
+  display: flex;
+  justify-content: right;
+  text-align: center;
   color: darkcyan;
   font-weight: bold;
 `;
 
 const AnimalProfileTitle = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 8px;
   margin-bottom: 0px;
   margin-right: 80px;
