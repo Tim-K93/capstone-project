@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 export default function AnimalSearch({ onSearch }) {
   const [searchSpecies, setSearchSpecies] = useState("");
@@ -9,8 +10,8 @@ export default function AnimalSearch({ onSearch }) {
   };
 
   return (
-    <div>
-      <label htmlFor="searchSpecies"></label>
+    <SearchFilter>
+      <label htmlFor="searchSpecies" aria-label="searchSpecies"></label>
       <input
         placeholder="filter by species"
         type="text"
@@ -18,6 +19,19 @@ export default function AnimalSearch({ onSearch }) {
         value={searchSpecies}
         onChange={handleSearchChange}
       />
-    </div>
+    </SearchFilter>
   );
 }
+
+const SearchFilter = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 4px;
+  input::placeholder {
+    text-align: center;
+  }
+  input {
+    width: 110px;
+  }
+`;

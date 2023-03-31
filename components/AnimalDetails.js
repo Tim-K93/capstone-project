@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 import Link from "next/link";
 import AnimalSearch from "./AnimalSearch";
 
@@ -74,28 +75,33 @@ export default function AnimalDetails({
 
   return (
     <>
-      <h2>Animal Details</h2>
+      <HeadContainer>
+        <Headline>Profiles</Headline>
+      </HeadContainer>
       <AnimalSearch onSearch={handleSearch} />
       {isEditing ? (
         <>
-          <button onClick={handleSaveClick}>Save</button>
-          <button onClick={handleCancelClick}>Cancel</button>
+          <ButtonContainer>
+            <SaveButton onClick={handleSaveClick}>Save</SaveButton>
+            <CancelButton onClick={handleCancelClick}>Cancel</CancelButton>
+          </ButtonContainer>
         </>
       ) : null}
 
       {filteredAnimals.map((animal) => (
-        <div key={animal.id}>
-          <button onClick={() => handleDeleteAnimalClick(animal.id)}>
+        <AnimalDetailsContainer key={animal.id}>
+          <DeleteButton onClick={() => handleDeleteAnimalClick(animal.id)}>
             Delete
-          </button>
-          <Link href={`/animalProfile/${animal.id}`}>
-            <p>{animal.name}`s Profile</p>
-          </Link>
-
-          <button onClick={() => handleEditClick(animal.id)}>Edit</button>
+          </DeleteButton>
+          <EditButton onClick={() => handleEditClick(animal.id)}>
+            Edit
+          </EditButton>
+          <AnimalProfileLink href={`/animalProfile/${animal.id}`}>
+            <AnimalProfileTitle>{animal.name}`s Profile</AnimalProfileTitle>
+          </AnimalProfileLink>
           {editingId === animal.id ? (
-            <ul>
-              <li>
+            <AnimalDetailsList>
+              <AnimalDetailsItem>
                 <EditableField
                   name="species"
                   value={fields[animal.id]?.species ?? animal.species}
@@ -106,8 +112,8 @@ export default function AnimalDetails({
                     }))
                   }
                 />
-              </li>
-              <li>
+              </AnimalDetailsItem>
+              <AnimalDetailsItem>
                 <EditableField
                   name="name"
                   value={fields[animal.id]?.name ?? animal.name}
@@ -118,8 +124,8 @@ export default function AnimalDetails({
                     }))
                   }
                 />
-              </li>
-              <li>
+              </AnimalDetailsItem>
+              <AnimalDetailsItem>
                 <EditableField
                   name="age"
                   value={fields[animal.id]?.age ?? animal.age}
@@ -130,8 +136,8 @@ export default function AnimalDetails({
                     }))
                   }
                 />
-              </li>
-              <li>
+              </AnimalDetailsItem>
+              <AnimalDetailsItem>
                 <EditableField
                   name="color"
                   value={fields[animal.id]?.color ?? animal.color}
@@ -142,8 +148,8 @@ export default function AnimalDetails({
                     }))
                   }
                 />
-              </li>
-              <li>
+              </AnimalDetailsItem>
+              <AnimalDetailsItem>
                 <EditableField
                   name="owner"
                   value={fields[animal.id]?.owner ?? animal.owner}
@@ -154,8 +160,8 @@ export default function AnimalDetails({
                     }))
                   }
                 />
-              </li>
-              <li>
+              </AnimalDetailsItem>
+              <AnimalDetailsItem>
                 <EditableField
                   name="miscellaneous"
                   value={
@@ -171,20 +177,146 @@ export default function AnimalDetails({
                     }))
                   }
                 />
-              </li>
-            </ul>
+              </AnimalDetailsItem>
+            </AnimalDetailsList>
           ) : (
             <>
-              <p>Species: {animal.species}</p>
-              <p>Name: {animal.name}</p>
-              <p>Age: {animal.age}</p>
-              <p>Character: {animal.color}</p>
-              <p>Owner: {animal.owner}</p>
-              <p>Miscellaneous: {animal.miscellaneous}</p>
+              <AnimalUl>
+                <AnimalLi>Species: {animal.species}</AnimalLi>
+                <AnimalLi>Name: {animal.name}</AnimalLi>
+                <AnimalLi>Age: {animal.age}</AnimalLi>
+                <AnimalLi>Character: {animal.color}</AnimalLi>
+                <AnimalLi>Owner: {animal.owner}</AnimalLi>
+                <AnimalLi>Miscellaneous: {animal.miscellaneous}</AnimalLi>
+              </AnimalUl>
             </>
           )}
-        </div>
+        </AnimalDetailsContainer>
       ))}
     </>
   );
 }
+
+const AnimalUl = styled.ul`
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 0px;
+  list-style-type: none;
+  font-style: italic;
+  font-size: 16px;
+`;
+
+const AnimalLi = styled.li`
+  padding: 10px;
+  text-align: center;
+`;
+
+const ButtonContainer = styled.button`
+  border: none;
+`;
+
+const SaveButton = styled.button`
+  background-color: #4caf50;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 3px 2px;
+`;
+
+const DeleteButton = styled.button`
+  background-color: #adadad;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 6px 6px;
+  font-size: 12px;
+  margin-bottom: 5px;
+`;
+
+const CancelButton = styled.button`
+  background-color: #d02424;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 6px 6px;
+  font-size: 12px;
+`;
+
+const EditButton = styled.button`
+  background-color: #adadad;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 6px 6px;
+  font-size: 12px;
+`;
+
+const Headline = styled.h1`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #444444;
+`;
+
+const HeadContainer = styled.div`
+  display: flex;
+  background-color: #7cbcde;
+  height: 83px;
+`;
+
+const AnimalDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: auto;
+  word-wrap: break-word;
+  height: 380px;
+  padding: 10px;
+  border: 3px solid #ccc;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+`;
+
+const AnimalProfileLink = styled(Link)`
+  display: flex;
+  justify-content: right;
+  text-align: center;
+  color: darkcyan;
+  font-weight: bold;
+`;
+
+const AnimalProfileTitle = styled.p`
+  font-size: 16px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+  margin-right: 80px;
+  text-decoration: underline;
+`;
+
+const AnimalDetailsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const AnimalDetailsItem = styled.li`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
