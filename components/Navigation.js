@@ -7,17 +7,17 @@ export default function Navigation() {
   return (
     <Footer>
       <li>
-        <StyledLink href="/">
+        <StyledLink href="/" aria-label="Home">
           <AiOutlineHome />
         </StyledLink>
       </li>
       <li>
-        <StyledLink href="./createCards">
+        <StyledLink href="./createCards" aria-label="Create Cards">
           <MdOutlineAddCircle />
         </StyledLink>
       </li>
       <li>
-        <StyledLink href="/allCards">
+        <StyledLink href="/allCards" aria-label="All Cards">
           <TfiAlignJustify />
         </StyledLink>
       </li>
@@ -27,7 +27,6 @@ export default function Navigation() {
 
 const StyledLink = styled.a`
   display: flex;
-  position: relative;
   color: white;
   text-decoration: none;
   font-weight: bold;

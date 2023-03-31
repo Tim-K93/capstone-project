@@ -3,6 +3,94 @@ import { useForm } from "react-hook-form";
 import { uid } from "uid";
 import styled from "styled-components";
 
+export default function AddAnimalForm({ setAnimals, animals }) {
+  const [submitMessage, setSubmitMessage] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data, event) => {
+    event.target.reset();
+    const newAnimal = { ...data, id: uid() };
+    setAnimals([...(animals || []), newAnimal]);
+    setSubmitMessage(true);
+    setShowDetails(true);
+    setTimeout(() => {
+      setSubmitMessage(false);
+      setShowDetails(false);
+    }, 3000);
+  };
+
+  return (
+    <FormContainer>
+      <Headline>Create a new profile</Headline>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Select {...register("species", { required: true })}>
+          <option value="">--Choose Animal--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="rabbit">Rabbit</option>
+          <option value="tortoise">Tortoise</option>
+          <option value="guinea pig">Guinea pig</option>
+        </Select>
+        {errors.species && <ErrorMessage>Species is required</ErrorMessage>}
+        <Input
+          {...register("name", { required: true })}
+          minLength="2"
+          maxLength="15"
+          type="text"
+          key="name"
+          placeholder="Name"
+        />
+        {errors.name && <ErrorMessage>Name is required</ErrorMessage>}
+        <Input
+          {...register("age", { required: true })}
+          name="age"
+          min="0"
+          max="3"
+          type="number"
+          key="age"
+          placeholder="Age"
+        />
+        {errors.age && <ErrorMessage>Age is required</ErrorMessage>}
+        <Input
+          {...register("color", { required: true })}
+          minLength="2"
+          maxLength="15"
+          type="text"
+          key="character"
+          placeholder="color"
+        />
+        {errors.color && <ErrorMessage>Color is required</ErrorMessage>}
+        <Input
+          {...register("owner", { required: true })}
+          name="owner"
+          min="0"
+          max="3"
+          type="number"
+          key="owner"
+          placeholder="Owners"
+        />
+        {errors.owner && <ErrorMessage>Owners is required</ErrorMessage>}
+        <Input
+          {...register("miscellaneous")}
+          key="miscellaneous"
+          placeholder="miscellaneous"
+          maxLength="60"
+        />
+
+        <Button type="submit" />
+        {submitMessage && (
+          <SuccessMessage>Form submitted successfully</SuccessMessage>
+        )}
+      </Form>
+    </FormContainer>
+  );
+}
+
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,91 +160,3 @@ const SuccessMessage = styled.p`
   color: green;
   font-size: 16px;
 `;
-
-export default function AddAnimalForm({ setAnimals, animals }) {
-  const [submitMessage, setSubmitMessage] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data, event) => {
-    event.target.reset();
-    const newAnimal = { ...data, id: uid() };
-    setAnimals([...(animals || []), newAnimal]);
-    setSubmitMessage(true);
-    setShowDetails(true);
-    setTimeout(() => {
-      setSubmitMessage(false);
-      setShowDetails(false);
-    }, 3000);
-  };
-
-  return (
-    <FormContainer>
-      <Headline>Create a new profile</Headline>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Select {...register("species", { required: true })}>
-          <option value="">--Choose Animal--</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="rabbit">Rabbit</option>
-          <option value="tortoise">Tortoise</option>
-          <option value="guinea pig">Guinea pig</option>
-        </Select>
-        {errors.species && <ErrorMessage>Species is required</ErrorMessage>}
-        <Input
-          {...register("name", { required: true })}
-          minLength="2"
-          maxLength="15"
-          type="text"
-          key="name"
-          placeholder="Name"
-        />
-        {errors.name && <ErrorMessage>Name is required</ErrorMessage>}
-        <Input
-          {...register("age", { required: true })}
-          name="age"
-          minLength={0}
-          maxLength={3}
-          type="text"
-          key="age"
-          placeholder="Age"
-        />
-        {errors.age && <ErrorMessage>Age is required</ErrorMessage>}
-        <Input
-          {...register("color", { required: true })}
-          minLength="2"
-          maxLength="15"
-          type="text"
-          key="character"
-          placeholder="color"
-        />
-        {errors.color && <ErrorMessage>Color is required</ErrorMessage>}
-        <Input
-          {...register("owner", { required: true })}
-          name="owner"
-          minLength={0}
-          maxLength={3}
-          type="text  "
-          key="owner"
-          placeholder="Owners"
-        />
-        {errors.owner && <ErrorMessage>Owners is required</ErrorMessage>}
-        <Input
-          {...register("miscellaneous")}
-          key="miscellaneous"
-          placeholder="miscellaneous"
-          maxLength="60"
-        />
-
-        <Button type="submit" />
-        {submitMessage && (
-          <SuccessMessage>Form submitted successfully</SuccessMessage>
-        )}
-      </Form>
-    </FormContainer>
-  );
-}

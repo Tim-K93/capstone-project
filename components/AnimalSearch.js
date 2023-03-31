@@ -11,7 +11,7 @@ export default function AnimalSearch({ onSearch }) {
 
   return (
     <SearchFilter>
-      <label htmlFor="searchSpecies"></label>
+      <label htmlFor="searchSpecies" aria-label="searchSpecies"></label>
       <input
         placeholder="filter by species"
         type="text"
