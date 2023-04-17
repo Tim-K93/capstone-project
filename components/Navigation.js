@@ -30,23 +30,17 @@ const StyledLink = styled.a`
   color: white;
   text-decoration: none;
   font-weight: bold;
-  margin-right: 20px;
   font-size: 2rem;
-  margin: 2rem;
-  padding: 1rem;
 `;
 
 const Footer = styled.nav`
   display: flex;
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
   height: 50px;
-  display: flex;
+  width: 100%;
   justify-content: space-around;
   align-items: center;
   background-color: #282828;
-  padding: 0;
   list-style-type: none;
 `;
