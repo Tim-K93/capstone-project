@@ -49,8 +49,8 @@ export default function AddAnimalForm({ setAnimals, animals }) {
         <Input
           {...register("age", { required: true })}
           name="age"
-          min="0"
-          max="3"
+          min="1"
+          max="40"
           type="number"
           key="age"
           placeholder="Age"
@@ -69,7 +69,7 @@ export default function AddAnimalForm({ setAnimals, animals }) {
           {...register("owner", { required: true })}
           name="owner"
           min="0"
-          max="3"
+          max="10"
           type="number"
           key="owner"
           placeholder="Owners"
